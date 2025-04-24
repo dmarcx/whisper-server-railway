@@ -3,10 +3,14 @@ import whisper
 import os
 
 app = Flask(__name__)
-model = whisper.load_model("base")
+model = None  # נטען רק ברגע שנצטרך
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
+    global model
+    if model is None:
+        model = whisper.load_model("base")  # נטען כאן
+
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
     
