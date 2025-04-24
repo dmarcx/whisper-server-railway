@@ -1,4 +1,3 @@
-# server.py
 from flask import Flask, request, jsonify
 import whisper
 import os
@@ -28,5 +27,5 @@ def home():
     return "Whisper server is running."
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ["PORT"])
     app.run(host="0.0.0.0", port=port)
